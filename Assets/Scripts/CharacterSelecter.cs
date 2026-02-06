@@ -1,14 +1,20 @@
-﻿using UnityEngine;
-
+﻿using System;
+using UnityEngine;
 
 public class CharacterSelecter : MonoBehaviour,ICharacter
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject rockPrefab;
+    [SerializeField] GameObject scissorsPrefab;
+    [SerializeField] GameObject paperPrefab;
 
     public Character Character { get; set; }
 
-    public void SelectCharacter(Character character)
+    public event Action OnChangeCharacter;
+
+    public void ChangeCharacter(Character character)
     {
         Character = character;
+        Debug.Log(Character);
+        EventManager.Instance.ChangeCharacter();
     }
 }
